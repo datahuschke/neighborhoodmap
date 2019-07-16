@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UFT-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Neighborhood Map</title>
+</head>
+<body>
+
+<div class="search-div">
+    <div class="input-group">
+        <input id="search-input" class="form-control" placeholder="Find cool places.." data-bind="textInput: Query, valueUpdate: 'afterkeydown'">
+        <span class="input-group-addon" id="hide-search-btn" data-bind="click: showHideButton(), text: showOrHide"></span>
+    </div>
+    <ul class="list-unstyled" data-bind="visible: showHideResults, Query, template: {name: 'item', foreach: searchResults}">
+    </ul>
+</div>
+
+<!-- template bindng: http://knockoutjs.com/documentation/template-binding.html -->
+<script type="text/html" id="item">
+    <li class="search-output" data-bind="text: name, click: showInfo"></li>
+</script>
+
+<!-- thought about having buttons to show/hide all markes of one or more categories,
+didn't implement the JS-function though. Instead easy "solution": custom markers to indicate
+the category of the marker directly on the map -->
+<!--<div class="filter">
+    <button class="filter-option food btn btn-warning btn-block">Food</button>
+    <button class="filter-option shopping btn btn-info btn-block">Shopping</button>
+    <button class="filter-option other btn btn-success btn-block">Other</button>
+</div> -->
+
+<div id="map"></div>
+
+<script src="js/knockout-3.4.2.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/app.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBfO6T7ApDkqyAnyROtUr7oQsy8UUjSxhw&callback=runApp" async defer onerror="googleError()"></script>
+</body>
+</html>
